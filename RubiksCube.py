@@ -78,6 +78,10 @@ class Face:
         for i in range(3):
             self.side[i][colNum] = otherCol[0][i]
 
+    def _changeRow(self, *otherRow, rowNum):
+        for i in range(3):
+            self.side[rowNum][i] = otherRow[0][i]
+
 class Cube:
     def __init__(self, char0, char1, char2, char3, char4, char5):
         self.side0 = Face(char0) #front, orange
@@ -94,7 +98,7 @@ def main():
     dummy1 = [1, 1, 1]
     dummy2 = [2, 2, 2]
     face._changeCol(dummy1, colNum=0)
-    face._changeCol(dummy2, colNum=2)
+    face._changeRow(dummy2, rowNum=2)
     print('intiial:')
     face._out()
 
