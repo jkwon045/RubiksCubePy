@@ -74,25 +74,27 @@ class Face:
 
         
     #function to change a column in the face
-    def _changeCol(self, num, col):
-        for i in range (3):
-            self.side[i][col] = num
+    def _changeCol(self, *otherCol, colNum):
+        for i in range(3):
+            self.side[i][colNum] = otherCol[0][i]
 
 class Cube:
-    def __init__(self, num0, num1, num2, num3, num4, num5):
-        self.side0 = Face(num0) #front, orange
-        self.side1 = Face(num1) #top, yellow
-        self.side2 = Face(num2) #down, white
-        self.side3 = Face(num3) #left, green
-        self.side4 = Face(num4) #right, blue
-        self.side5 = Face(num5) #back, red
+    def __init__(self, char0, char1, char2, char3, char4, char5):
+        self.side0 = Face(char0) #front, orange
+        self.side1 = Face(char1) #top, yellow
+        self.side2 = Face(char2) #down, white
+        self.side3 = Face(char3) #left, green
+        self.side4 = Face(char4) #right, blue
+        self.side5 = Face(char5) #back, red
 #    def rotateR(self):
         
 
 def main():
     face = Face(0)
-    face._changeCol(1,0)
-    face._changeCol(2,2)
+    dummy1 = [1, 1, 1]
+    dummy2 = [2, 2, 2]
+    face._changeCol(dummy1, colNum=0)
+    face._changeCol(dummy2, colNum=2)
     print('intiial:')
     face._out()
 
