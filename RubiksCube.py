@@ -82,6 +82,19 @@ class Face:
         for i in range(3):
             self.side[rowNum][i] = otherRow[0][i]
 
+    # functions to return column or row as an array
+    def _getCol(self, colNum):
+        col = []
+        for i in range(3):
+            self.side[i][colNum] = col[i]
+        return col
+
+    def _getRow(self, rowNum):
+        row = []
+        for i in range(3):
+            self.side[rowNum][i] = row[i]
+        return row
+
 class Cube:
     def __init__(self, char0, char1, char2, char3, char4, char5):
         self.side0 = Face(char0) #front, orange
@@ -90,8 +103,19 @@ class Cube:
         self.side3 = Face(char3) #left, green
         self.side4 = Face(char4) #right, blue
         self.side5 = Face(char5) #back, red
-#    def rotateR(self):
-        
+    def rotateR(self):
+        self.side4._roateCW()
+        # save off columns of 4 faces (top, front, bottom, back)
+        uRightCol = self.side1._getCol(2)
+        fRightCol = self.side4._getCol(2)
+        dRightCol = self.side2._getCol(2)
+        bRightCol = self.side5._getCol(0) # maybe 2?
+
+        # assign columns (up->back->down->front->up)
+        self.side5._changeRow(uRightCol, 0) # maybe 2?
+        self.side2._changeRow(bRightCol, 2)
+        self.side4._changeRow(dRightCol, 2)
+        self.side1._changeRow(fRightCol, 2)
 
 def main():
     face = Face(0)
